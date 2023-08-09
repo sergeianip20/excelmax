@@ -5,7 +5,12 @@ import BasicSelect from "./SelectExcel";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "../App";
 import { Button } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material/Select";
 export default function BasicTextFields(props: any) {
+  const [age, setAge] = React.useState("");
+  const handleChange = (e: string) => {
+    setAge(e);
+  };
   const {
     register,
     handleSubmit,
@@ -14,7 +19,7 @@ export default function BasicTextFields(props: any) {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-    props.newArrayValue(data);
+    props.newArrayValue({ ...data, tipsWeldedConnection: age });
   };
   return (
     <Box
@@ -44,7 +49,7 @@ export default function BasicTextFields(props: any) {
         label="Тип шва"
         variant="standard"
       />
-      <BasicSelect register={register} />
+      <BasicSelect age={age} handleChange={handleChange} />
       <TextField
         {...register("WeldLength")}
         id="standard-basic"
