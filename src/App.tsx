@@ -49,7 +49,7 @@ function App() {
     setArrayValue([
       ...arrayvalue,
       {
-        id: String(arrayvalue.length),
+        id: String(arrayvalue.length + 1),
         weldingMethod: "РД",
         gost: "12",
         seamType: e.seamType,
